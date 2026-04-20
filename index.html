@@ -3,73 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños! ❤️</title>
+    <title>Para Mi Niña Especial ❤️</title>
     <style>
+        :root {
+            --pink-primary: #ff85a1;
+            --pink-dark: #d63384;
+            --soft-bg: #ffeef2;
+        }
+
         body {
             margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--soft-bg);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            color: #333;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
             text-align: center;
-            max-width: 400px;
-            z-index: 10;
-            animation: fadeIn 2s ease-in;
+            overflow-x: hidden;
         }
 
-        h1 { color: #d63384; font-size: 2.5rem; margin-bottom: 10px; }
-        p { font-size: 1.2rem; line-height: 1.5; }
-        .heart { color: #e25555; font-size: 30px; animation: beat .3s infinite alternate; }
-
-        @keyframes beat { to { transform: scale(1.2); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Corazones flotantes de fondo */
-        .bg-heart {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.5);
-            animation: float 5s infinite linear;
-            top: 100%;
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        @keyframes float {
-            to { transform: translateY(-110vh) rotate(360deg); }
+        .section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .section.active { display: block; }
+
+        h1 { color: var(--pink-dark); }
+        button {
+            background-color: var(--pink-primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            margin: 10px;
         }
+        button:hover { background-color: var(--pink-dark); transform: scale(1.05); }
+
+        /* Grid de Regalos */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gift-box {
+            background: var(--pink-primary);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .gift-box:hover { background: var(--pink-dark); transform: translateY(-5px); }
+
+        /* Galería de Fotos */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        .photo-grid img { width: 100%; border-radius: 10px; border: 3px solid var(--pink-primary); }
+
+        /* Sobre de la carta */
+        .envelope { font-size: 80px; cursor: pointer; transition: 0.5s; }
+        .letter { background: #fffdf5; padding: 20px; border: 1px solid #ddd; margin-top: 15px; display: none; text-align: left; line-height: 1.6; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="heart">❤️</div>
-        <h1>¡Feliz Cumpleaños, Amor!</h1>
-        <p>Hoy celebramos tu vida. Eres la persona más especial del mundo y espero que este nuevo año esté lleno de risas y momentos hermosos juntos.</p>
-        <p><strong>¡Te amo muchísimo!</strong></p>
+    <div class="container">
+        <div id="inicio" class="section active">
+            <h1>Hola, amor... ❤️</h1>
+            <p>Tengo una sorpresa preparada para ti.</p>
+            <p>¿Estás lista para ver tu regalo?</p>
+            <button onclick="showSection('regalos')">¡SÍ!</button>
+            <button onclick="showSection('espera')">No...</button>
+        </div>
+
+        <div id="espera" class="section">
+            <h1>¡Un momento! 🛑</h1>
+            <p>Sé que te va a encantar, confía en mí...</p>
+            <button onclick="showSection('inicio')">Volver</button>
+        </div>
+
+        <div id="regalos" class="section">
+            <h1>Escoge un regalo ❤️</h1>
+            <div class="grid">
+                <div class="gift-box" onclick="showSection('fotos')">🎁 Regalo 1 <br> Nuestros Momentos</div>
+                <div class="gift-box" onclick="showSection('flores')">🎁 Regalo 2 <br> Flores para ti</div>
+                <div class="gift-box" onclick="showSection('video')">🎁 Regalo 3 <br> 20 Razones</div>
+                <div class="gift-box" onclick="showSection('carta')">🎁 Regalo 4 <br> Una Carta</div>
+            </div>
+        </div>
+
+        <div id="fotos" class="section">
+            <h2>Nuestros Momentos Favoritos 📸</h2>
+            <div class="photo-grid">
+                <img src="foto1.jpg" alt="Momento 1">
+                <img src="foto2.jpg" alt="Momento 2">
+                <img src="foto3.jpg" alt="Momento 3">
+                <img src="foto4.jpg" alt="Momento 4">
+            </div>
+            <button onclick="showSection('regalos')">Volver al menú</button>
+        </div>
+
+        <div id="flores" class="section">
+            <h2>Flores para la flor más bella 🌹</h2>
+            <div style="font-size: 100px;">💐</div>
+            <p>Un ramo que nunca se marchita, como lo que siento por ti.</p>
+            <button onclick="showSection('regalos')">Volver al menú</button>
+        </div>
+
+        <div id="video" class="section">
+            <h2>20 Razones por las que te amo 🎥</h2>
+            <p>(Aquí pondrás tu video especial de cumpleaños)</p>
+            <button onclick="showSection('regalos')">Volver al menú</button>
+        </div>
+
+        <div id="carta" class="section">
+            <h2>Una carta para ti ✉️</h2>
+            <div class="envelope" onclick="openLetter()">💌</div>
+            <div id="letterContent" class="letter">
+                <p><strong>Querida [Su Nombre],</strong></p>
+                <p>Aquí escribirás todas esas cosas lindas que tienes en mente...</p>
+                <p>¡Felices 20 años!</p>
+            </div>
+            <br>
+            <button onclick="showSection('regalos')">Volver al menú</button>
+        </div>
     </div>
 
     <script>
-        // Generador de corazones decorativos
-        for (let i = 0; i < 20; i++) {
-            let heart = document.createElement('div');
-            heart.className = 'bg-heart';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.opacity = Math.random();
-            document.body.appendChild(heart);
+        function showSection(id) {
+            // Oculta todas las secciones
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Muestra la sección seleccionada
+            document.getElementById(id).classList.add('active');
         }
-    </script>
-</body>
-</html>
