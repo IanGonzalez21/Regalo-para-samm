@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños! ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            z-index: 10;
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 { color: #d63384; font-size: 2.5rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; line-height: 1.5; }
+        .heart { color: #e25555; font-size: 30px; animation: beat .3s infinite alternate; }
+
+        @keyframes beat { to { transform: scale(1.2); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Corazones flotantes de fondo */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            animation: float 5s infinite linear;
+            top: 100%;
+        }
+
+        @keyframes float {
+            to { transform: translateY(-110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>¡Feliz Cumpleaños, Amor!</h1>
+        <p>Hoy celebramos tu vida. Eres la persona más especial del mundo y espero que este nuevo año esté lleno de risas y momentos hermosos juntos.</p>
+        <p><strong>¡Te amo muchísimo!</strong></p>
+    </div>
+
+    <script>
+        // Generador de corazones decorativos
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+        }
+    </script>
+</body>
+</html>
