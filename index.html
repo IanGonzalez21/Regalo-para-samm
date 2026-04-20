@@ -13,145 +13,158 @@
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--soft-bg);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             background: white;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        .section { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .section.active { display: block; }
+        /* Control de secciones */
+        .section { display: none; }
+        .active { display: block !important; animation: fadeIn 0.6s ease; }
 
-        h1 { color: var(--pink-dark); }
+        h1 { color: var(--pink-dark); margin-bottom: 20px; }
+        p { color: #555; font-size: 1.1rem; }
+
+        .btn-container { margin-top: 30px; }
+
         button {
             background-color: var(--pink-primary);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 50px;
             font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
+            transition: all 0.3s;
             margin: 10px;
+            box-shadow: 0 4px 15px rgba(255, 133, 161, 0.4);
         }
-        button:hover { background-color: var(--pink-dark); transform: scale(1.05); }
 
-        /* Grid de Regalos */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
+        button:hover { background-color: var(--pink-dark); transform: scale(1.1); }
+
+        /* Estilo para los cuadros de regalo */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .gift-box {
             background: var(--pink-primary);
             color: white;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 25px 10px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
         }
-        .gift-box:hover { background: var(--pink-dark); transform: translateY(-5px); }
+        .gift-box:hover { background: var(--pink-dark); }
 
-        /* Galería de Fotos */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
+        .letter { 
+            background: #fffdf5; 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px dashed var(--pink-primary);
+            margin-top: 20px;
+            text-align: left;
+            display: none;
         }
-        .photo-grid img { width: 100%; border-radius: 10px; border: 3px solid var(--pink-primary); }
 
-        /* Sobre de la carta */
-        .envelope { font-size: 80px; cursor: pointer; transition: 0.5s; }
-        .letter { background: #fffdf5; padding: 20px; border: 1px solid #ddd; margin-top: 15px; display: none; text-align: left; line-height: 1.6; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="container">
+        
         <div id="inicio" class="section active">
             <h1>Hola, amor... ❤️</h1>
             <p>Tengo una sorpresa preparada para ti.</p>
             <p>¿Estás lista para ver tu regalo?</p>
-            <button onclick="showSection('regalos')">¡SÍ!</button>
-            <button onclick="showSection('espera')">No...</button>
+            <div class="btn-container">
+                <button onclick="changeView('regalos')">¡SÍ!</button>
+                <button onclick="changeView('espera')">No...</button>
+            </div>
         </div>
 
         <div id="espera" class="section">
-            <h1>¡Un momento! 🛑</h1>
-            <p>Sé que te va a encantar, confía en mí...</p>
-            <button onclick="showSection('inicio')">Volver</button>
+            <h1>¡Espera! 🛑</h1>
+            <p>Sé que te encantará, dale una oportunidad...</p>
+            <button onclick="changeView('inicio')">Está bien, volver</button>
         </div>
 
         <div id="regalos" class="section">
-            <h1>Escoge un regalo ❤️</h1>
+            <h1>Tus Regalos 🎁</h1>
             <div class="grid">
-                <div class="gift-box" onclick="showSection('fotos')">🎁 Regalo 1 <br> Nuestros Momentos</div>
-                <div class="gift-box" onclick="showSection('flores')">🎁 Regalo 2 <br> Flores para ti</div>
-                <div class="gift-box" onclick="showSection('video')">🎁 Regalo 3 <br> 20 Razones</div>
-                <div class="gift-box" onclick="showSection('carta')">🎁 Regalo 4 <br> Una Carta</div>
+                <div class="gift-box" onclick="changeView('fotos')">📸<br>Momentos</div>
+                <div class="gift-box" onclick="changeView('flores')">💐<br>Flores</div>
+                <div class="gift-box" onclick="changeView('video')">🎥<br>20 Razones</div>
+                <div class="gift-box" onclick="changeView('carta')">✉️<br>Carta</div>
             </div>
         </div>
 
         <div id="fotos" class="section">
-            <h2>Nuestros Momentos Favoritos 📸</h2>
-            <div class="photo-grid">
-                <img src="foto1.jpg" alt="Momento 1">
-                <img src="foto2.jpg" alt="Momento 2">
-                <img src="foto3.jpg" alt="Momento 3">
-                <img src="foto4.jpg" alt="Momento 4">
-            </div>
-            <button onclick="showSection('regalos')">Volver al menú</button>
+            <h2>Nuestra Historia 📸</h2>
+            <p>(Aquí aparecerán tus fotos)</p>
+            <button onclick="changeView('regalos')">Atrás</button>
         </div>
 
         <div id="flores" class="section">
-            <h2>Flores para la flor más bella 🌹</h2>
-            <div style="font-size: 100px;">💐</div>
-            <p>Un ramo que nunca se marchita, como lo que siento por ti.</p>
-            <button onclick="showSection('regalos')">Volver al menú</button>
+            <h2>Flores para ti 🌹</h2>
+            <div style="font-size: 80px; margin: 20px 0;">💐🌸🌷</div>
+            <p>Estas nunca se marchitan.</p>
+            <button onclick="changeView('regalos')">Atrás</button>
         </div>
 
         <div id="video" class="section">
-            <h2>20 Razones por las que te amo 🎥</h2>
-            <p>(Aquí pondrás tu video especial de cumpleaños)</p>
-            <button onclick="showSection('regalos')">Volver al menú</button>
+            <h2>20 Razones 🎥</h2>
+            <p>Aquí irá tu video especial.</p>
+            <button onclick="changeView('regalos')">Atrás</button>
         </div>
 
         <div id="carta" class="section">
-            <h2>Una carta para ti ✉️</h2>
-            <div class="envelope" onclick="openLetter()">💌</div>
-            <div id="letterContent" class="letter">
-                <p><strong>Querida [Su Nombre],</strong></p>
-                <p>Aquí escribirás todas esas cosas lindas que tienes en mente...</p>
-                <p>¡Felices 20 años!</p>
+            <h2>Una carta especial ✉️</h2>
+            <div id="sobre" style="font-size: 60px; cursor:pointer;" onclick="abrirCarta()">💌</div>
+            <div id="textoCarta" class="letter">
+                <p><strong>Mi vida:</strong></p>
+                <p>Aquí escribes tu mensaje personalizado para sus 20 años...</p>
             </div>
             <br>
-            <button onclick="showSection('regalos')">Volver al menú</button>
+            <button onclick="changeView('regalos')">Atrás</button>
         </div>
+
     </div>
 
     <script>
-        function showSection(id) {
-            // Oculta todas las secciones
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            // Muestra la sección seleccionada
-            document.getElementById(id).classList.add('active');
+        // Función principal para cambiar de vista
+        function changeView(sectionId) {
+            // 1. Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // 2. Mostrar la sección que queremos
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+            } else {
+                console.error("No se encontró la sección:", sectionId);
+            }
         }
+
+        // Función para abrir el sobre
+        function abrirCarta() {
+            document.getElementById('textoCarta').style.display = 'block';
+            document.getElementById('sobre').innerHTML = '📂';
+        }
+    </script>
+</body>
+</html>
