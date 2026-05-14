@@ -35,10 +35,18 @@
             z-index: 10;
         }
 
-        /* Control de secciones */
-        .section { display: none; }
-        .active { display: block !important; animation: fadeIn 0.6s ease; }
+        /* Control de secciones - Centrado mejorado */
+        .section { 
+            display: none; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+        }
 
+        .active { 
+            display: flex !important; /* Cambiamos block por flex para centrar contenido */
+            animation: fadeIn 0.6s ease; 
+        }
         h1 { color: var(--pink-dark); margin-bottom: 20px; font-size: 2rem; }
         p { color: #555; font-size: 1.1rem; line-height: 1.6; }
 
@@ -165,18 +173,18 @@
 
         <div id="regalos" class="section">
             <h1>Tus Regalos 🎁</h1>
-            <p>Elige uno para abrirlo:</p>
+            <p>Tal vez no estoy contigo en este momento físicamente, pero espero ésta página que hice para tí ayude. Elige uno de tus regalos para abrirlo:</p>
             <div class="grid">
-                <div class="gift-box" onclick="changeView('fotos')">📸<br>Momentos</div>
-                <div class="gift-box" onclick="changeView('flores')">💐<br>Flores</div>
+                <div class="gift-box" onclick="changeView('fotos')">📸<br>Nuestra historia</div>
+                <div class="gift-box" onclick="changeView('flores')">💐<br>Tus flores</div>
                 <div class="gift-box" onclick="changeView('video')">🎥<br>20 Razones</div>
-                <div class="gift-box" onclick="changeView('carta')">✉️<br>Carta</div>
+                <div class="gift-box" onclick="changeView('carta')">✉️<br>Carta al amor de mi vida</div>
             </div>
         </div>
 
         <div id="fotos" class="section">
             <h1>Nuestra Historia 📸</h1>
-            <p>Algunos de mis momentos favoritos contigo.</p>
+            <p>Algunos de mis momentos favoritos contigo, desde que empezamos a salir, viajes y momentos divertidos y los besos que nos hemos dado.</p>
             
             <div class="photo-gallery">
                 <div class="photo-item"><img src="amor1.jpeg" alt="Nuestro Momento 1"></div>
@@ -198,12 +206,12 @@
             <div class="photo-item" style="height: auto; max-width: 300px; margin: 20px auto;">
                 <img src="flores.jpeg" alt="Ramo de flores" style="width: 100%; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
             </div>
-            <p>Estas nunca se marchitan, porque están guardadas en este rincón especial.</p>
+            <p>Estas nunca se marchitan, como mi amor por tí.</p>
             <button onclick="changeView('regalos')">Volver al menú</button>
         </div>
 
         <div id="video" class="section">
-            <h2>20 Razones 🎥</h2>
+            <h2>20 Razones para amarte🎥</h2>
             <p>Dale play, mi vida:</p>
             <video width="100%" controls style="border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
                 <source src="video_cumple.mp4" type="video/mp4">
@@ -214,13 +222,16 @@
         </div>
 
         <div id="carta" class="section">
-            <h2>Una carta especial ✉️</h2>
+            <h2>Una carta para tí ✉️</h2>
             <p>Haz clic en el sobre para abrirla:</p>
             <div id="sobre" style="font-size: 80px; cursor:pointer; transition: 0.3s;" onclick="abrirCarta()">💌</div>
             <div id="textoCarta" class="letter">
-                <p><strong>Mi vida:</strong></p>
-                <p>Aquí escribes tu mensaje personalizado para sus 20 años...</p>
-                <p>¡Felices 20, mi amor! Te amo infinitamente.</p>
+                <p><strong>Querida Samm, amor mío...</strong></p>
+                <p>hFeliz cumpleaños preciosa. éste es tu día especial y quiero que lo disfrutes al máximo, tal vez no este contigo en éste momento, pero como sabes estoy trabajando para darnos un futuro increible juntos muy próspero, pero como todo mundo debería de saber, el día de hoy no es de nadie más que tuyo, éste día es para amarte y celebrar tu llegada a ésta roca gigante que gira en su propio eje.</p>
+                <p>Agradezco eternamente el que hayas nacido, de igual forma la forma tan amorosa en la que tus padres te educaron, pues formaron a una mujer increíble, amorosa, gentil, detallista y comprometida, mi mujer. Realmente no me imagino mi vida sin ti, sin ésta bella mujer que puede hacer sonreír a cualquiera. Y que a mi me hace querer ser una mejor persona para poder lograr todo juntos, lado a lado.</p>
+                <p>Ésta es una carta que quiero que abras cada vez que dudes de ti misma, donde puedas recordar los proyectos que has logrado y los sueños que poco a poco cumplirás a pesar de los retos, ya has ido a Italia, te tatuaste, ésto es solo la punta del iceberg, llegarás muy lejos, cada vez que dudes de tí, quiero que sepas que yo estaré a tu lado (o mediante ésta carta) para recordarte lo increíble que eres.</p>
+
+                <p><strong>¡Felices 20, mi amor! Te amo infinitamente.</strong></p>
             </div>
             <br>
             <button onclick="changeView('regalos')">Atrás</button>
